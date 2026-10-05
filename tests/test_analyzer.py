@@ -1,6 +1,6 @@
 from src.sequential import analyze_sequential
 from src.divide_conquer import analyze_divide_conquer
-
+from src.parallel import analyze_parallel
 
 def sample_logs():
          return[
@@ -56,3 +56,10 @@ def test_both_algorithms_return_same_result():
          
          assert senquential_result == divide_conquer_result
          
+def test_parallel_analysis():
+         logs = sample_logs()
+         
+         sequential_result = analyze_sequential(logs)
+         parallel_result = analyze_parallel(logs)
+         
+         assert parallel_result == sequential_result

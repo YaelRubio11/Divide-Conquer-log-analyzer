@@ -3,6 +3,7 @@ import time
 
 from src.sequential import analyze_sequential
 from src.divide_conquer import analyze_divide_conquer
+from src.parallel import analyze_parallel
 
 
 SAMPLE_MESSAGES = [
@@ -49,13 +50,19 @@ def main():
             analyze_divide_conquer,
             logs,
         )
+        
+        parallel_time, parallel_result = benchmark(
+                 analyze_parallel,
+                 logs,
+        )
 
         print(f"Dataset size:       {log_count:,} logs")
         print(f"Sequential:         {sequential_time:.6f} seconds")
         print(f"Divide & Conquer:   {divide_time:.6f} seconds")
+        print(f"Parallel:           {parallel_time:.6f} seconds")
         print(
             "Results identical:",
-            sequential_result == divide_result,
+            sequential_result == divide_result ==parallel_result,
         )        
 if __name__ == "__main__":
          main()
